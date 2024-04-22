@@ -1,5 +1,3 @@
-// App.js
-import './App.css';
 import SearchAppBar from './components/Navbar';
 import CardWrapper from './components/CardWrapper';
 import { useState, useEffect } from 'react';
@@ -12,7 +10,9 @@ function App() {
   const [text, setText] = useState("");
   const [oriData, setOriData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [isLogin,setIsLogin] = useState(false);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,9 +27,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Filter data based on text
     if (text.trim() === "") {
-      setFilteredData(oriData); // If search text is empty, show all data
+      setFilteredData(oriData); 
     } else {
       setFilteredData(
         oriData.filter(user =>
@@ -39,14 +38,14 @@ function App() {
     }
   }, [text, oriData]);
 
-  console.log(filteredData);
+  console.log(isLogin);
 
   return (
     <div>
-      <SearchAppBar text={text} setText={setText} />
+      <SearchAppBar text={text} setText={setText} isLogin={isLogin} setIsLogin={setIsLogin} />
 
       <Routes>
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login setIsLogin={setIsLogin} isLogin={isLogin}/>}/>
         <Route exact path="/" element={<CardWrapper filteredData={filteredData} />} />
         <Route path="/adminpanel" element={<AdminPanel filteredData={filteredData}/>} />
       </Routes>

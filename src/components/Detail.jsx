@@ -14,7 +14,6 @@ export default function ActionAreaCard({ index }) {
           <Typography gutterBottom variant="h5" component="div">
             Company Name: {index.company.name}
           </Typography>
-          {/* Access specific properties of the address object */}
           <Typography gutterBottom variant="h5" component="div">
             Address: {index.address.city}, {index.address.state}
           </Typography>

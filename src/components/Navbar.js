@@ -56,13 +56,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({text,setText}) {
+export default function SearchAppBar({text,setText,isLogin,setIsLogin}) {
     const nav=useNavigate();
     
    const handleInputChange=(e)=>{
         setText(e.target.value);
    }
     
+   const handleClick=()=>{
+        nav("/");
+        setIsLogin(!isLogin)
+   }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -93,7 +97,8 @@ export default function SearchAppBar({text,setText}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          <div className='btn' onClick={()=>nav("/login")}>Login</div>
+          {isLogin?(<div className='btn' onClick={handleClick}>Logout</div>):(<div className='btn' onClick={()=>nav("/login")}>Login</div>)}
+          
         </Toolbar>
       </AppBar>
     </Box>

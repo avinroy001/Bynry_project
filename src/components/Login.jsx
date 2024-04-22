@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './Login.css';
 import {useNavigate} from "react-router-dom";
-const Login = () => {
+const Login = ({setIsLogin , isLogin}) => {
   const navigation=useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault(); 
@@ -14,6 +14,7 @@ const Login = () => {
     if(username==="username" && password==="password"){
       console.log("next page");
       navigation("/adminpanel")
+      setIsLogin(!isLogin);
     }else{
       alert("wrong username or password");
     }
