@@ -5,19 +5,21 @@ import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import AdminPanel from './components/AdminPanel';
-
+import CircularProgress from '@mui/joy/CircularProgress';
+import "./App.css";
 function App() {
   const [text, setText] = useState("");
   const [oriData, setOriData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [isLogin,setIsLogin] = useState(false);
-
+  const [isLoad,setIsLoad] = useState(true)
   
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get('https://dummyjson.com/users');
         setOriData(res.data.users);
+        setIsLoad(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -46,7 +48,7 @@ function App() {
 
       <Routes>
         <Route path="/login" element={<Login setIsLogin={setIsLogin} isLogin={isLogin}/>}/>
-        <Route exact path="/" element={<CardWrapper filteredData={filteredData} />} />
+        <Route exact path="/" element={isLoad?(<div className="loadbar"><CircularProgress size="lg"/></div>):(<CardWrapper filteredData={filteredData} />)} />
         <Route path="/adminpanel" element={<AdminPanel filteredData={filteredData}/>} />
       </Routes>
       
