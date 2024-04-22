@@ -67,3 +67,4 @@ conclusion
 --------------
 
 Every steps has been done according to description except step number 6 due to the constraint of time. 
+This project is deployed on vercel nad the link is: https://bynry-project.vercel.app/
