@@ -9,6 +9,7 @@ td{
 } */
 button{
     margin-left: 20px;
+    cursor: pointer;
 }
 .user{
     width: 500px;
